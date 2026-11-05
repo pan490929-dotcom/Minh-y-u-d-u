@@ -349,33 +349,77 @@ input:focus {
   white-space: pre-line;
   margin-top: 20px;
 }
+/* ALBUM NHẠC */
+.album {
+  text-align: left;
+  margin-top: 20px;
+}
 
-/* =========================
-   6. NHẠC
-========================= */
-
-.music-disc {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin: 30px auto;
-  background: radial-gradient(
-    circle,#fff 0 8%,#dc82a6 9% 15%,#f6c2d5 16% 100%
-  );
+.album-item {
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 45px;
+  gap: 12px;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 16px;
+  background: #fff0f5;
+  border: 1px solid #f3c5d7;
+}
+
+.album-cover {
+  width: 65px;
+  height: 65px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #f8d4e2;
+}
+
+.album-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.album-info strong {
+  display: block;
+  color: #a65376;
+}
+
+.album-info small {
+  color: #b78398;
+}
+
+.album-item button {
+  border: none;
+  background: #e98fb1;
   color: white;
-  box-shadow: 0 5px 25px #d98ba755;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 17px;
 }
 
-.music-disc.playing {
-  animation: spin 4s linear infinite;
+.add-music {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff7fa;
+  border-radius: 16px;
+  text-align: left;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.add-music input {
+  text-align: left;
+}
+
+#musicPlayer {
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 12px;
+}
+
+#musicStatus {
+  text-align: center;
+  font-size: 13px;
+  color: #b78398;
 }
 
 /* =========================
