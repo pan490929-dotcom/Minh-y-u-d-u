@@ -1139,13 +1139,14 @@ function renderAlbum() {
     const item = document.createElement("div");
     item.className = "album-item";
 
-    const cover = document.createElement("div");
+    const cover = document.createElement("img");
     cover.className = "album-cover";
-    cover.textContent = "🎵";
-    cover.style.display = "flex";
-    cover.style.alignItems = "center";
-    cover.style.justifyContent = "center";
-    cover.style.fontSize = "30px";
+    cover.src = song.image || "";
+    cover.alt = song.name;
+
+    cover.onerror = () => {
+      cover.style.display = "none";
+    };
 
     const info = document.createElement("div");
     info.className = "album-info";
