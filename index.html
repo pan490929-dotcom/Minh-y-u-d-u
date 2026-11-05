@@ -1257,7 +1257,12 @@ function openSecret() {
 
   showPage("secretPage");
 
-  startMusic();
+  const secretMusic = document.getElementById("secretMusic");
+
+  if (secretMusic) {
+    secretMusic.src =
+      "https://www.youtube.com/embed/L_z9YHX5ous?autoplay=1&loop=1&playlist=L_z9YHX5ous";
+  }
 
   const area = document.getElementById("fallingWords");
 
