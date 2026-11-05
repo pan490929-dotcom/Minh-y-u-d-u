@@ -511,6 +511,10 @@ input:focus {
     background: #ff8db9;
     color: white;
 }
+  
+  </style>
+</head>
+  </body>
 
 <!-- =========================
      MÀN HÌNH THỎ VÀ QUÀ
@@ -766,9 +770,7 @@ input:focus {
 ========================= -->
 
 <section id="secretPage" class="page hidden">
-
     <div class="secret-background">
-
         <h1 class="secret-title">
             A SECRET FOR YOU ♡
         </h1>
@@ -1248,11 +1250,6 @@ function addSong() {
 renderAlbum();
 
 
-
-/* =========================
-   7. BÍ MẬT TRÁI TIM
-========================= */
-
 /* =========================
 7. TRÁI TIM 3D XOAY 360°
 ========================= */
@@ -1380,11 +1377,9 @@ function openSecret() {
 
     showPage("secretPage");
 
-    resizeHeart();
-
-    if (animationID) {
-        cancelAnimationFrame(animationID);
-    }
+    stopFallingWords();
+  
+     resizeHeart();
 
     createHeart();
 
@@ -1394,7 +1389,6 @@ function openSecret() {
 
     area.innerHTML = "";
 
-    stopFallingWords();
 
     fallingTimer = setInterval(() => {
 
