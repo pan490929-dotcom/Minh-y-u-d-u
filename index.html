@@ -1,0 +1,1186 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Secret 💗</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg,#ffe5ef,#fff5f8);
+  color: #75475b;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 25px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: rgba(255,255,255,.9);
+  width: 100%;
+  max-width: 430px;
+  padding: 28px 22px;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px #d98ba733;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  color: #d66f9a;
+  font-size: 28px;
+}
+
+h2 {
+  color: #ce7599;
+}
+
+p {
+  line-height: 1.7;
+}
+
+.small {
+  font-size: 13px;
+  color: #b78398;
+}
+
+.heart {
+  color: #e78bac;
+  font-size: 38px;
+  animation: beat 1.2s infinite;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.2); }
+}
+
+.main-btn {
+  border: none;
+  background: linear-gradient(135deg,#ed9fbd,#d96f9a);
+  color: white;
+  padding: 13px 22px;
+  border-radius: 30px;
+  font-size: 16px;
+  margin: 7px;
+  transition: .2s;
+}
+
+.main-btn:active {
+  transform: scale(.96);
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #efb5cb;
+  border-radius: 13px;
+  margin: 12px 0;
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+  color: #75475b;
+}
+
+input:focus {
+  border-color: #d66f9a;
+}
+
+/* =========================
+   1. THỎ VÀ HỘP QUÀ
+========================= */
+
+.bunny-page {
+  overflow: hidden;
+  background: linear-gradient(160deg,#ffe3ee,#fff7fa);
+}
+
+.bunny-scene {
+  width: 100%;
+  max-width: 430px;
+  text-align: center;
+  position: relative;
+}
+
+.welcome-text {
+  font-size: 32px;
+  animation: fadeIn 1.5s;
+}
+
+.welcome-sub {
+  color: #bc7893;
+}
+
+.bunny {
+  margin-top: 50px;
+  font-size: 85px;
+  opacity: 0;
+  transform: translateX(-150vw);
+  animation: bunnyWalk 3s ease forwards;
+  animation-delay: .5s;
+}
+
+@keyframes bunnyWalk {
+  0% {
+    opacity: 0;
+    transform: translateX(-150vw);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(10px);
+  }
+  85% {
+    transform: translateX(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.bunny-emoji {
+  display: inline-block;
+  animation: hop 1s infinite;
+}
+
+@keyframes hop {
+  50% { transform: translateY(-12px); }
+}
+
+.gift-area {
+  margin-top: -5px;
+}
+
+#giftButton {
+  font-size: 85px;
+  background: none;
+  border: none;
+  animation: giftShake 1.5s infinite;
+  transition: .3s;
+}
+
+@keyframes giftShake {
+  0%,100% { transform: rotate(0); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+.tap-text {
+  font-size: 13px;
+  color: #bc7893;
+}
+
+.password-box {
+  display: none;
+  background: white;
+  padding: 22px;
+  margin-top: 25px;
+  border-radius: 22px;
+  box-shadow: 0 8px 25px #d98ba744;
+  animation: fadeIn .8s;
+}
+
+.password-box.show {
+  display: block;
+}
+
+.gift-open #giftButton {
+  animation: giftOpen .7s forwards;
+}
+
+@keyframes giftOpen {
+  50% { transform: scale(1.5) rotate(15deg); }
+  100% { transform: scale(.5); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   2. MENU
+========================= */
+
+.menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.menu button {
+  padding: 20px 8px;
+  background: #fff0f5;
+  color: #a65376;
+  border: 1px solid #f3c5d7;
+  border-radius: 17px;
+  font-size: 15px;
+  transition: .2s;
+}
+
+.menu button:active {
+  transform: scale(.95);
+}
+
+.menu button span {
+  display: block;
+  font-size: 29px;
+  margin-bottom: 8px;
+}
+
+/* =========================
+   3. CÂU HỎI
+========================= */
+
+#questionOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.option {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #f1c1d3;
+  background: #fff3f7;
+  color: #a85b7a;
+  border-radius: 13px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.option:active {
+  background: #fbdce8;
+}
+
+#questionResult {
+  min-height: 25px;
+  color: #d16e96;
+  font-weight: bold;
+}
+
+/* =========================
+   4. CÂU HỎI NGÀY
+========================= */
+
+.big-question {
+  font-size: 29px;
+  line-height: 1.4;
+  color: #d45f8e;
+}
+
+.date-stage {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  margin-top: 20px;
+}
+
+.date-btn {
+  position: absolute;
+  width: 46%;
+  min-height: 55px;
+  border: 1px solid #eeb3c9;
+  background: #fff0f5;
+  color: #a65376;
+  border-radius: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  transition: left .12s, top .12s;
+}
+
+#wrongAnswer {
+  left: 2%;
+  top: 15px;
+  z-index: 2;
+}
+
+.correct-date {
+  right: 2%;
+  top: 15px;
+  background: #e98fb1;
+  color: white;
+}
+
+/* =========================
+   5. LỜI NHẮN
+========================= */
+
+.letter {
+  background: #fff7f9;
+  border: 1px dashed #e9a2bb;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: left;
+  line-height: 1.9;
+  white-space: pre-line;
+  margin-top: 20px;
+}
+
+/* =========================
+   6. NHẠC
+========================= */
+
+.music-disc {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 30px auto;
+  background: radial-gradient(
+    circle,#fff 0 8%,#dc82a6 9% 15%,#f6c2d5 16% 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+  color: white;
+  box-shadow: 0 5px 25px #d98ba755;
+}
+
+.music-disc.playing {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =========================
+   7. BÍ MẬT
+========================= */
+
+#secretPage {
+  background: linear-gradient(180deg,#ffdae8,#f8a9c8,#fbdce8);
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+}
+
+.secret-background {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px 12px;
+}
+
+.secret-title {
+  color: white;
+  font-size: 28px;
+  z-index: 2;
+}
+
+.big-heart {
+  font-size: 115px;
+  animation: heartBeat 1s infinite;
+  filter: drop-shadow(0 5px 15px #c64c7a66);
+  z-index: 2;
+}
+
+@keyframes heartBeat {
+  0%,100% { transform: scale(1); }
+  25% { transform: scale(1.13); }
+  45% { transform: scale(1); }
+  65% { transform: scale(1.18); }
+}
+
+.secret-subtitle {
+  color: white;
+  font-size: 17px;
+  z-index: 2;
+}
+
+#fallingWords {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.love-word {
+  position: absolute;
+  top: -60px;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  white-space: nowrap;
+  text-shadow: 0 2px 5px #cf6492;
+  animation: falling 6s linear forwards;
+}
+
+@keyframes falling {
+  from {
+    transform: translateY(-60px) rotate(-10deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  to {
+    transform: translateY(110vh) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+.secret-back {
+  z-index: 3;
+  margin-top: 25px;
+  background: white;
+  color: #d16e96;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     MÀN HÌNH THỎ VÀ QUÀ
+========================= -->
+
+<section id="lockPage" class="page bunny-page">
+  <div class="bunny-scene">
+
+    <h1 class="welcome-text">A Little Secret ♡</h1>
+    <p class="welcome-sub">
+      Someone has a little surprise...
+    </p>
+
+    <div class="bunny">
+      <div class="bunny-emoji">🐰</div>
+    </div>
+
+    <p id="bunnyMessage">
+      A little gift for someone special 💗
+    </p>
+
+    <div class="gift-area">
+      <button id="giftButton" onclick="openGift()">
+        🎁
+      </button>
+    </div>
+
+    <p class="tap-text">
+      Touch the gift to open ♡
+    </p>
+
+    <div id="passwordBox" class="password-box">
+      <h2>Surprise! 💗</h2>
+      <p>Nhập mật khẩu để mở món quà nhé!</p>
+
+      <input
+        id="password"
+        type="password"
+        placeholder="Enter password..."
+      >
+
+      <button class="main-btn" onclick="unlock()">
+        Unlock 💌
+      </button>
+
+      <p id="lockMessage" class="small"></p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     CÂU HỎI KỶ NIỆM
+========================= -->
+
+<section id="questionPage" class="page hidden">
+  <div class="card">
+
+    <div class="heart">💗</div>
+
+    <p id="questionNumber" class="small">
+      QUESTION 01 / 03
+    </p>
+
+    <h1>How Much Do You Remember?</h1>
+
+    <h2 id="questionText"></h2>
+
+    <div id="questionOptions"></div>
+
+    <p id="questionResult"></p>
+
+    <button
+      id="nextQuestionBtn"
+      class="main-btn hidden"
+      onclick="nextQuestion()"
+    >
+      Tiếp tục →
+    </button>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     CÂU HỎI NGÀY HÔM NAY
+========================= -->
+
+<section id="datePage" class="page hidden">
+  <div class="card date-card">
+
+    <div class="heart">♡</div>
+
+    <h1 class="big-question">
+      HÔM NAY LÀ NGÀY BAO NHIÊU?
+    </h1>
+
+    <p>Hãy chọn câu trả lời của cậu nhé!</p>
+
+    <div class="date-stage">
+
+      <button
+        id="wrongAnswer"
+        class="date-btn"
+        onclick="runAway()"
+        onpointerenter="runAway()"
+      >
+        A. 19/11
+      </button>
+
+      <button
+        class="date-btn correct-date"
+        onclick="chooseB()"
+      >
+        B. Anh không biết
+      </button>
+
+    </div>
+
+    <p class="small">
+      Có một đáp án hơi khó chọn đấy! 🎀
+    </p>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     MENU CHÍNH
+========================= -->
+
+<section id="homePage" class="page hidden">
+  <div class="card">
+
+    <div class="heart">♡</div>
+
+    <h1>Our Little World</h1>
+
+    <p>
+      Chọn một món quà dành cho cậu nhé!
+    </p>
+
+    <div class="menu">
+
+      <button onclick="showPage('musicPage')">
+        <span>🎵</span>
+        Nhạc
+      </button>
+
+      <button onclick="showPage('letterPage')">
+        <span>💌</span>
+        Thư
+      </button>
+
+      <button onclick="openSecret()">
+        <span>💗</span>
+        Bí mật
+      </button>
+
+    </div>
+
+    <p class="small">Made with love ♡</p>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     TRANG NHẠC
+========================= -->
+
+<section id="musicPage" class="page hidden">
+  <div class="card">
+
+    <div class="heart">🎵</div>
+
+    <h1>Our Music</h1>
+
+    <p>Một giai điệu nhỏ dành cho cậu.</p>
+
+    <div class="music-disc" id="musicDisc">
+      ♫
+    </div>
+
+    <h2>Little Love Melody</h2>
+
+    <p class="small">
+      An original melody made for this website ♡
+    </p>
+
+    <button
+      class="main-btn"
+      onclick="toggleMusic()"
+      id="musicButton"
+    >
+      ▶ Phát nhạc
+    </button>
+
+    <button
+      class="main-btn"
+      onclick="showPage('homePage')"
+    >
+      Trang chủ
+    </button>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     TRANG THƯ
+========================= -->
+
+<section id="letterPage" class="page hidden">
+  <div class="card">
+
+    <div class="heart">💌</div>
+
+    <h1>A Letter For You</h1>
+
+    <p>Một bức thư nhỏ dành riêng cho cậu.</p>
+
+    <button class="main-btn" onclick="openLetter()">
+      Mở thư 💗
+    </button>
+
+    <div id="letterContent" class="letter hidden"></div>
+
+    <button
+      class="main-btn"
+      onclick="showPage('homePage')"
+    >
+      Trang chủ
+    </button>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     TRANG BÍ MẬT
+========================= -->
+
+<section id="secretPage" class="page hidden">
+
+  <div class="secret-background">
+
+    <h1 class="secret-title">
+      A SECRET FOR YOU
+    </h1>
+
+    <div class="big-heart">💗</div>
+
+    <p class="secret-subtitle">
+      You are my favorite person ♡
+    </p>
+
+    <div id="fallingWords"></div>
+
+    <button
+      class="main-btn secret-back"
+      onclick="showPage('homePage')"
+    >
+      Quay về 💌
+    </button>
+
+  </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   1. MẬT KHẨU
+========================= */
+
+const MY_PASSWORD = "01020203";
+
+function openGift() {
+
+  const scene = document.querySelector(".bunny-scene");
+  const box = document.getElementById("passwordBox");
+
+  if (box.classList.contains("show")) return;
+
+  scene.classList.add("gift-open");
+
+  setTimeout(() => {
+
+    box.classList.add("show");
+
+    document.querySelector(".tap-text").textContent =
+      "Your surprise is waiting 💗";
+
+    document.getElementById("password").focus();
+
+  }, 650);
+
+}
+
+function unlock() {
+
+  const value = document.getElementById("password").value;
+
+  if (value === MY_PASSWORD) {
+
+    questionIndex = 0;
+
+    renderQuestion();
+
+    showPage("questionPage");
+
+  } else {
+
+    document.getElementById("lockMessage").textContent =
+      "Sai mật khẩu rồi, thử lại nhé! 💗";
+
+  }
+
+}
+
+
+/* =========================
+   2. CHUYỂN TRANG
+========================= */
+
+function showPage(id) {
+
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.add("hidden");
+  });
+
+  document.getElementById(id).classList.remove("hidden");
+
+  if (id !== "secretPage") {
+    stopFallingWords();
+  }
+
+}
+
+
+/* =========================
+   3. BA CÂU HỎI
+========================= */
+
+const questions = [
+
+  {
+    q: "Câu 1: Ngày chúng ta gặp nhau là?",
+    options: [
+      "A. 06/02/2025",
+      "B. 03/08/2026",
+      "C. 31/01/2025",
+      "D. 27/06/2025"
+    ],
+    answer: 2
+  },
+
+  {
+    q: "Câu 2: Ngày yêu nhau là?",
+    options: [
+      "A. 19/08/2026",
+      "B. 23/06/2026",
+      "C. 08/05/2025",
+      "D. 12/02/2026"
+    ],
+    answer: 0
+  },
+
+  {
+    q: "Câu 3: Sinh nhật của em?",
+    options: [
+      "A. 05/12/2009",
+      "B. 18/04/2009",
+      "C. 29/09/2009",
+      "D. 28/09/2009"
+    ],
+    answer: 3
+  }
+
+];
+
+let questionIndex = 0;
+let questionLocked = false;
+
+function renderQuestion() {
+
+  const q = questions[questionIndex];
+
+  questionLocked = false;
+
+  document.getElementById("questionNumber").textContent =
+    `QUESTION 0${questionIndex + 1} / 03`;
+
+  document.getElementById("questionText").textContent = q.q;
+
+  document.getElementById("questionResult").textContent = "";
+
+  document.getElementById("nextQuestionBtn")
+    .classList.add("hidden");
+
+  const area = document.getElementById("questionOptions");
+
+  area.innerHTML = "";
+
+  q.options.forEach((option, index) => {
+
+    const btn = document.createElement("button");
+
+    btn.className = "option";
+
+    btn.textContent = option;
+
+    btn.onclick = () => {
+
+      if (questionLocked) return;
+
+      if (index === q.answer) {
+
+        questionLocked = true;
+
+        btn.style.background = "#d8f4df";
+
+        document.getElementById("questionResult").textContent =
+          "Chính xác rồi! Cậu nhớ giỏi quá! 💗";
+
+        document.getElementById("nextQuestionBtn")
+          .classList.remove("hidden");
+
+        area.querySelectorAll("button").forEach(b => {
+          b.disabled = true;
+        });
+
+      } else {
+
+        document.getElementById("questionResult").textContent =
+          "Chưa đúng rồi, thử lại nhé! 🌸";
+
+        btn.style.background = "#ffe0e0";
+
+      }
+
+    };
+
+    area.appendChild(btn);
+
+  });
+
+}
+
+function nextQuestion() {
+
+  questionIndex++;
+
+  if (questionIndex < questions.length) {
+
+    renderQuestion();
+
+  } else {
+
+    showPage("datePage");
+
+  }
+
+}
+
+
+/* =========================
+   4. CÂU HỎI NGÀY 19/11
+========================= */
+
+function runAway() {
+
+  const btn = document.getElementById("wrongAnswer");
+
+  const stage = document.querySelector(".date-stage");
+
+  const maxX = stage.clientWidth - btn.offsetWidth;
+
+  const maxY = stage.clientHeight - btn.offsetHeight;
+
+  const x = Math.random() * Math.max(0, maxX);
+
+  const y = Math.random() * Math.max(0, maxY);
+
+  btn.style.left = x + "px";
+
+  btn.style.top = y + "px";
+
+}
+
+function chooseB() {
+
+  showPage("homePage");
+
+}
+
+
+/* =========================
+   5. BỨC THƯ
+========================= */
+
+function openLetter() {
+
+  const letter = document.getElementById("letterContent");
+
+  letter.classList.remove("hidden");
+
+  letter.textContent =
+
+`Gửi người đặc biệt của mình,
+
+Cảm ơn cậu vì đã xuất hiện.
+Mong rằng mỗi ngày của cậu đều có thật nhiều niềm vui.
+
+Dù cuộc sống có bận rộn thế nào,
+hãy nhớ rằng luôn có những điều tốt đẹp đang chờ cậu.
+
+Mong chúng ta sẽ có thêm thật nhiều kỷ niệm đáng nhớ.
+
+Thương cậu rất nhiều! 💗
+
+                 From someone special ♡`;
+
+}
+
+
+/* =========================
+   6. NHẠC NỀN TỰ TẠO
+========================= */
+
+let audioContext = null;
+
+let musicTimer = null;
+
+let musicPlaying = false;
+
+let noteIndex = 0;
+
+const melody = [
+
+  523.25, 659.25, 783.99, 659.25,
+  587.33, 698.46, 783.99, 698.46,
+  523.25, 659.25, 783.99, 880
+
+];
+
+function playNote(frequency) {
+
+  if (!audioContext) return;
+
+  const oscillator = audioContext.createOscillator();
+
+  const gain = audioContext.createGain();
+
+  oscillator.type = "sine";
+
+  oscillator.frequency.value = frequency;
+
+  gain.gain.setValueAtTime(0, audioContext.currentTime);
+
+  gain.gain.linearRampToValueAtTime(
+    0.12,
+    audioContext.currentTime + 0.04
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioContext.currentTime + 0.55
+  );
+
+  oscillator.connect(gain);
+
+  gain.connect(audioContext.destination);
+
+  oscillator.start();
+
+  oscillator.stop(audioContext.currentTime + 0.6);
+
+}
+
+async function startMusic() {
+
+  if (!audioContext) {
+
+    const AudioClass =
+      window.AudioContext || window.webkitAudioContext;
+
+    audioContext = new AudioClass();
+
+  }
+
+  await audioContext.resume();
+
+  if (musicPlaying) return;
+
+  musicPlaying = true;
+
+  musicTimer = setInterval(() => {
+
+    playNote(melody[noteIndex]);
+
+    noteIndex = (noteIndex + 1) % melody.length;
+
+  }, 500);
+
+  updateMusicUI();
+
+}
+
+function stopMusic() {
+
+  musicPlaying = false;
+
+  clearInterval(musicTimer);
+
+  musicTimer = null;
+
+  updateMusicUI();
+
+}
+
+async function toggleMusic() {
+
+  if (musicPlaying) {
+
+    stopMusic();
+
+  } else {
+
+    await startMusic();
+
+  }
+
+}
+
+function updateMusicUI() {
+
+  const button = document.getElementById("musicButton");
+
+  const disc = document.getElementById("musicDisc");
+
+  if (!button || !disc) return;
+
+  button.textContent = musicPlaying
+    ? "Ⅱ Tạm dừng"
+    : "▶ Phát nhạc";
+
+  disc.classList.toggle("playing", musicPlaying);
+
+}
+
+
+/* =========================
+   7. BÍ MẬT TRÁI TIM
+========================= */
+
+let fallingTimer = null;
+
+function openSecret() {
+
+  showPage("secretPage");
+
+  startMusic();
+
+  const area = document.getElementById("fallingWords");
+
+  area.innerHTML = "";
+
+  if (fallingTimer) {
+    clearInterval(fallingTimer);
+  }
+
+  fallingTimer = setInterval(() => {
+
+    const word = document.createElement("div");
+
+    word.className = "love-word";
+
+    word.textContent = "Em yêu anh 💗";
+
+    word.style.left = Math.random() * 85 + "%";
+
+    word.style.animationDuration =
+      (4 + Math.random() * 4) + "s";
+
+    word.style.fontSize =
+      (14 + Math.random() * 12) + "px";
+
+    area.appendChild(word);
+
+    setTimeout(() => word.remove(), 8500);
+
+  }, 250);
+
+}
+
+function stopFallingWords() {
+
+  if (fallingTimer) {
+
+    clearInterval(fallingTimer);
+
+    fallingTimer = null;
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
