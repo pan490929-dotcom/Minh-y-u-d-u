@@ -1050,132 +1050,197 @@ Thương cậu rất nhiều! 💗
                  From someone special ♡`;
 
 }
-
-
 /* =========================
-   6. NHẠC NỀN TỰ TẠO
+   6. ALBUM NHẠC
 ========================= */
 
-let audioContext = null;
-
-let musicTimer = null;
-
-let musicPlaying = false;
-
-let noteIndex = 0;
-
-const melody = [
-
-  523.25, 659.25, 783.99, 659.25,
-  587.33, 698.46, 783.99, 698.46,
-  523.25, 659.25, 783.99, 880
-
+const defaultSongs = [
+  {
+    name: "Baby",
+    artist: "MCK",
+    link: "https://youtu.be/n7nt4ixOwmo?si=18NcjnLzXRGjAUp9"
+  },
+  {
+    name: "Chìm Sâu",
+    artist: "MCK",
+    link: "https://youtu.be/cgCA-jP5QSY?si=NlUc4mSTMX4_HT11"
+  },
+  {
+    name: "Thịt lợn",
+    artist: "MCK",
+    link: "https://youtu.be/aGIf5h1pCco?si=EnQ1bLqbloyeuYoc"
+  },
+  {
+    name: "Mắt môi tay chân",
+    artist: "MCK",
+    link: "https://youtu.be/Xk9kczrs8I0?si=oLk2-ASGIvA9m0tG"
+  },
+  {
+    name: "Nguyễn Văn Mười",
+    artist: "MCK",
+    link: "https://youtu.be/3IVmlhOHKCQ?si=495pLgOrIlsUFibF"
+  }
 ];
 
-function playNote(frequency) {
+let userSongs = [];
 
-  if (!audioContext) return;
-
-  const oscillator = audioContext.createOscillator();
-
-  const gain = audioContext.createGain();
-
-  oscillator.type = "sine";
-
-  oscillator.frequency.value = frequency;
-
-  gain.gain.setValueAtTime(0, audioContext.currentTime);
-
-  gain.gain.linearRampToValueAtTime(
-    0.12,
-    audioContext.currentTime + 0.04
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    0.001,
-    audioContext.currentTime + 0.55
-  );
-
-  oscillator.connect(gain);
-
-  gain.connect(audioContext.destination);
-
-  oscillator.start();
-
-  oscillator.stop(audioContext.currentTime + 0.6);
-
+try {
+  userSongs = JSON.parse(localStorage.getItem("mySongs")) || [];
+} catch (error) {
+  userSongs = [];
 }
 
-async function startMusic() {
+let songs = [...defaultSongs, ...userSongs];
 
-  if (!audioContext) {
+function getYouTubeID(link) {
+  try {
+    const url = new URL(link);
 
-    const AudioClass =
-      window.AudioContext || window.webkitAudioContext;
+    if (url.hostname.includes("youtu.be")) {
+      return url.pathname.slice(1);
+    }
 
-    audioContext = new AudioClass();
+    if (url.searchParams.get("v")) {
+      return url.searchParams.get("v");
+    }
 
+    if (url.pathname.includes("/embed/")) {
+      return url.pathname.split("/embed/")[1].split("/")[0];
+    }
+
+    if (url.pathname.includes("/shorts/")) {
+      return url.pathname.split("/shorts/")[1].split("/")[0];
+    }
+
+  } catch (error) {
+    return null;
   }
 
-  await audioContext.resume();
-
-  if (musicPlaying) return;
-
-  musicPlaying = true;
-
-  musicTimer = setInterval(() => {
-
-    playNote(melody[noteIndex]);
-
-    noteIndex = (noteIndex + 1) % melody.length;
-
-  }, 500);
-
-  updateMusicUI();
-
+  return null;
 }
 
-function stopMusic() {
+function renderAlbum() {
+  const area = document.getElementById("albumList");
 
-  musicPlaying = false;
+  area.innerHTML = "";
 
-  clearInterval(musicTimer);
+  songs.forEach((song, index) => {
+    const item = document.createElement("div");
+    item.className = "album-item";
 
-  musicTimer = null;
+    const cover = document.createElement("div");
+    cover.className = "album-cover";
+    cover.textContent = "🎵";
+    cover.style.display = "flex";
+    cover.style.alignItems = "center";
+    cover.style.justifyContent = "center";
+    cover.style.fontSize = "30px";
 
-  updateMusicUI();
+    const info = document.createElement("div");
+    info.className = "album-info";
 
+    const name = document.createElement("strong");
+    name.textContent = song.name;
+
+    const artist = document.createElement("small");
+    artist.textContent = song.artist || "Unknown artist";
+
+    const button = document.createElement("button");
+    button.textContent = "▶";
+    button.onclick = () => playSong(index);
+
+    info.appendChild(name);
+    info.appendChild(artist);
+
+    item.appendChild(cover);
+    item.appendChild(info);
+    item.appendChild(button);
+
+    area.appendChild(item);
+  });
 }
 
-async function toggleMusic() {
+function playSong(index) {
+  const song = songs[index];
 
-  if (musicPlaying) {
+  const youtube = document.getElementById("musicPlayer");
+  const mp3 = document.getElementById("mp3Player");
+  const status = document.getElementById("musicStatus");
 
-    stopMusic();
+  youtube.classList.add("hidden");
+  mp3.classList.add("hidden");
+
+  youtube.src = "";
+  mp3.pause();
+  mp3.removeAttribute("src");
+  mp3.load();
+
+  const videoID = getYouTubeID(song.link);
+
+  if (videoID) {
+    youtube.src =
+      "https://www.youtube-nocookie.com/embed/" +
+      videoID + "?autoplay=1&rel=0";
+
+    youtube.classList.remove("hidden");
+    status.textContent = "Đang phát: " + song.name + " 💗";
+
+  } else if (/\.mp3($|[?#])/i.test(song.link)) {
+    mp3.src = song.link;
+    mp3.classList.remove("hidden");
+
+    mp3.play().then(() => {
+      status.textContent = "Đang phát: " + song.name + " 💗";
+    }).catch(() => {
+      status.textContent = "Không thể phát bài hát này. Em thử link khác nhé!";
+    });
 
   } else {
+    status.textContent = "Link chưa được hỗ trợ!";
+  }
+}
 
-    await startMusic();
+function addSong() {
+  const name = document.getElementById("songName").value.trim();
+  const artist = document.getElementById("songArtist").value.trim();
+  const link = document.getElementById("songLink").value.trim();
 
+  if (!name || !link) {
+    alert("Em hãy nhập tên bài hát và đường link nhé!");
+    return;
   }
 
+  const videoID = getYouTubeID(link);
+  const isMP3 = /\.mp3($|[?#])/i.test(link);
+
+  if (!videoID && !isMP3) {
+    alert("Hãy nhập link YouTube hoặc MP3 nhé!");
+    return;
+  }
+
+  const newSong = {
+    name: name,
+    artist: artist || "Unknown artist",
+    link: link
+  };
+
+  userSongs.push(newSong);
+  songs.push(newSong);
+
+  localStorage.setItem("mySongs", JSON.stringify(userSongs));
+
+  renderAlbum();
+
+  document.getElementById("songName").value = "";
+  document.getElementById("songArtist").value = "";
+  document.getElementById("songLink").value = "";
+
+  document.getElementById("musicStatus").textContent =
+    "Đã thêm bài hát vào album! 💗";
 }
 
-function updateMusicUI() {
+renderAlbum();
 
-  const button = document.getElementById("musicButton");
-
-  const disc = document.getElementById("musicDisc");
-
-  if (!button || !disc) return;
-
-  button.textContent = musicPlaying
-    ? "Ⅱ Tạm dừng"
-    : "▶ Phát nhạc";
-
-  disc.classList.toggle("playing", musicPlaying);
-
-}
 
 
 /* =========================
