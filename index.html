@@ -1384,7 +1384,10 @@ function openSecret() {
 showPage("secretPage");
 
 stopFallingWords();
-
+if (animationID) {
+    cancelAnimationFrame(animationID);
+    animationID = null;
+}
 resizeHeart();
 createHeart();
 drawHeart();
