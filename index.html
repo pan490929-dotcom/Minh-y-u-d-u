@@ -1393,12 +1393,8 @@ drawHeart();
 
 const music = document.getElementById("secretMusic");
 
-music.volume = 0.5;
-music.currentTime = 0;
-
-music.play().catch(() => {
-    console.log("Không thể tự phát nhạc.");
-});
+music.src =
+"https://www.youtube-nocookie.com/embed/L_z9YHX5ous?autoplay=1&loop=1&playlist=L_z9YHX5ous";
 
 const area = document.getElementById("fallingWords");
 
