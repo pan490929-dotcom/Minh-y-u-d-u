@@ -863,11 +863,13 @@ function showPage(id) {
 
   if (id !== "secretPage") {
     stopFallingWords();
+
+    const secretMusic = document.getElementById("secretMusic");
+
+    if (secretMusic) {
+      secretMusic.src = "";
+    }
   }
-
-}
-
-
 /* =========================
    3. BA CÂU HỎI
 ========================= */
