@@ -1364,7 +1364,7 @@ function drawHeart() {
 
     // Trái tim phản chiếu
     drawParticles(true);
-      ctx.globalAlpha = 1
+    
     // Trái tim chính
     drawParticles(false);
 
@@ -1373,42 +1373,42 @@ function drawHeart() {
 
 function openSecret() {
 
-    showPage("secretPage");
+showPage("secretPage");
 
-    stopFallingWords();
-  
-     resizeHeart();
+stopFallingWords();
 
-    createHeart();
+resizeHeart();
+createHeart();
+drawHeart();
 
-    drawHeart();
+const music = document.getElementById("secretMusic");
 
-    const area = document.getElementById("fallingWords");
+music.volume = 0.5;
+music.currentTime = 0;
 
-    area.innerHTML = "";
+music.play().catch(() => {
+    console.log("Không thể tự phát nhạc.");
+});
 
+const area = document.getElementById("fallingWords");
 
-    fallingTimer = setInterval(() => {
+area.innerHTML = "";
 
-        const word = document.createElement("div");
+fallingTimer = setInterval(() => {
 
-        word.className = "love-word";
+const word = document.createElement("div");
 
-        word.textContent = "EM YÊU ANH ♥";
+word.className = "love-word";
+word.textContent = "EM YÊU ANH ♥";
+word.style.left = Math.random() * 85 + "%";
+word.style.animationDuration = (4 + Math.random() * 4) + "s";
+word.style.fontSize = (14 + Math.random() * 12) + "px";
 
-        word.style.left = Math.random() * 85 + "%";
+area.appendChild(word);
 
-        word.style.animationDuration =
-            (4 + Math.random() * 4) + "s";
+setTimeout(() => word.remove(), 8500);
 
-        word.style.fontSize =
-            (14 + Math.random() * 12) + "px";
-
-        area.appendChild(word);
-
-        setTimeout(() => word.remove(), 8500);
-
-    }, 250);
+}, 250);
 
 }
 
