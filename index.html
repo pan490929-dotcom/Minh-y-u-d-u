@@ -863,9 +863,10 @@ function showPage(id) {
 
     const secretMusic = document.getElementById("secretMusic");
 
-    if (secretMusic) {
-      secretMusic.src = "";
-    }
+if (secretMusic) {
+secretMusic.pause();
+secretMusic.currentTime = 0;
+}
   }
 
 }
