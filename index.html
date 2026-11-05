@@ -653,7 +653,7 @@ input:focus {
     <h1>Our Little World</h1>
 
     <p>
-      Chọn một món quà dành cho cậu nhé!
+      Chọn một món quà dành cho anh nhé!
     </p>
 
     <div class="menu">
@@ -688,40 +688,50 @@ input:focus {
 <section id="musicPage" class="page hidden">
   <div class="card">
 
-    <div class="heart">🎵</div>
+    <div class="heart">🎧</div>
 
-    <h1>Our Music</h1>
+    <h1>My Little Album</h1>
+    <p>Những giai điệu yêu thích ♡</p>
 
-    <p>Một giai điệu nhỏ dành cho cậu.</p>
+    <div id="albumList" class="album"></div>
 
-    <div class="music-disc" id="musicDisc">
-      ♫
+    <p id="musicStatus">Chọn một bài hát để nghe nhé 💗</p>
+
+    <iframe
+      id="musicPlayer"
+      class="hidden"
+      width="100%"
+      height="210"
+      src=""
+      title="YouTube music player"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+
+    <audio id="mp3Player" controls class="hidden"
+      style="width:100%; margin-top:15px;">
+    </audio>
+
+    <div class="add-music">
+      <h2>＋ Thêm bài hát</h2>
+
+      <input id="songName" placeholder="Tên bài hát">
+
+      <input id="songArtist" placeholder="Tên ca sĩ">
+
+      <input id="songLink" placeholder="Dán link YouTube hoặc MP3">
+
+      <button class="main-btn" onclick="addSong()">
+        Thêm vào album 💗
+      </button>
     </div>
 
-    <h2>Little Love Melody</h2>
-
-    <p class="small">
-      An original melody made for this website ♡
-    </p>
-
-    <button
-      class="main-btn"
-      onclick="toggleMusic()"
-      id="musicButton"
-    >
-      ▶ Phát nhạc
-    </button>
-
-    <button
-      class="main-btn"
-      onclick="showPage('homePage')"
-    >
+    <button class="main-btn"
+      onclick="showPage('homePage')">
       Trang chủ
     </button>
-
   </div>
 </section>
-
 
 <!-- =========================
      TRANG THƯ
