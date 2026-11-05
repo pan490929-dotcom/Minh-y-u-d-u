@@ -423,96 +423,94 @@ input:focus {
 }
 
 /* =========================
-   7. BÍ MẬT
+7. BÍ MẬT - TRÁI TIM 3D
 ========================= */
 
 #secretPage {
-  background: linear-gradient(180deg,#ffdae8,#f8a9c8,#fbdce8);
-  overflow: hidden;
-  position: relative;
-  padding: 0;
+    background: #000;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    color: white;
 }
 
 .secret-background {
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 25px 12px;
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #190711, #000 75%);
+}
+
+#heartCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .secret-title {
-  color: white;
-  font-size: 28px;
-  z-index: 2;
-}
-
-.big-heart {
-  font-size: 115px;
-  animation: heartBeat 1s infinite;
-  filter: drop-shadow(0 5px 15px #c64c7a66);
-  z-index: 2;
-}
-
-@keyframes heartBeat {
-  0%,100% { transform: scale(1); }
-  25% { transform: scale(1.13); }
-  45% { transform: scale(1); }
-  65% { transform: scale(1.18); }
+    position: absolute;
+    top: 8%;
+    z-index: 2;
+    color: #ff9ac4;
+    font-size: 24px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #ff4c99;
 }
 
 .secret-subtitle {
-  color: white;
-  font-size: 17px;
-  z-index: 2;
+    position: absolute;
+    bottom: 15%;
+    z-index: 2;
+    color: #ffb5d2;
+    font-size: 17px;
+    text-shadow: 0 0 12px #ff4c99;
 }
 
 #fallingWords {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .love-word {
-  position: absolute;
-  top: -60px;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  white-space: nowrap;
-  text-shadow: 0 2px 5px #cf6492;
-  animation: falling 6s linear forwards;
+    position: absolute;
+    top: -40px;
+    color: #ff9bc5;
+    font-weight: bold;
+    white-space: nowrap;
+    text-shadow: 0 0 10px #ff4081;
+    animation: falling 6s linear forwards;
 }
 
 @keyframes falling {
-  from {
-    transform: translateY(-60px) rotate(-10deg);
-    opacity: 0;
-  }
-  10% { opacity: 1; }
-  to {
-    transform: translateY(110vh) rotate(20deg);
-    opacity: 0;
-  }
+    from {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
 }
 
 .secret-back {
-  z-index: 3;
-  margin-top: 25px;
-  background: white;
-  color: #d16e96;
+    position: absolute;
+    bottom: 3%;
+    z-index: 5;
+    background: #ff8db9;
+    color: white;
 }
-
-</style>
-</head>
-
-<body>
 
 <!-- =========================
      MÀN HÌNH THỎ VÀ QUÀ
