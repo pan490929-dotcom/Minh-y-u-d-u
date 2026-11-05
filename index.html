@@ -453,6 +453,7 @@ input:focus {
     inset: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
 }
 
 .secret-title {
@@ -1342,6 +1343,7 @@ function drawHeart() {
 
             if (reflection) {
                 py = centerY + (centerY - py) + 20;
+            ctx.globalAlpha = 0.15
             }
 
             const size = p.size * perspective;
@@ -1366,7 +1368,7 @@ function drawHeart() {
 
     // Trái tim phản chiếu
     drawParticles(true);
-
+      ctx.globalAlpha = 1
     // Trái tim chính
     drawParticles(false);
 
